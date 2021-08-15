@@ -19,14 +19,16 @@ for r in rows:
                 Years.append(y)
 
 Data = []
-CountryCodes = []
+CountryNames = []
 val = ""
 while(val != "Q"):
     val = input("Enter country code (or 'Q' to continue): ")
     if(val != "Q"):
         currentData = []
+        currentCountryName = ""
         for r in rows:
-            if(len(r) > 1 and r[1] == val):  
+            if(len(r) > 1 and r[1] == val):
+                currentCountryName = r[0]  
                 lastY = 0
                 for y in r[4:]:
                     if(not y):
@@ -35,11 +37,11 @@ while(val != "Q"):
                         currentData.append(float(y))
                         lastY = y
         Data.append(currentData)
-        CountryCodes.append(val)
+        CountryNames.append(currentCountryName)
 
         
 for i in range(len(Data)):
-    plt.plot(Years, Data[i], label=CountryCodes[i])
+    plt.plot(Years, Data[i], label=CountryNames[i])
 
 
 ax = plt.gca()
